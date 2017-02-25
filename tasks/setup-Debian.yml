@@ -13,10 +13,14 @@
     state: present
     filename: mongodb-org-3.2
 
-- name: Install MongoDb Server
+- name: Install MongoDb Server, shell and tools
   apt:
-    name: mongodb-org-server
+    name: "{{ item }}"
     state: installed
+  with_items:
+    - mongodb-org-server
+    - mongodb-org-shell
+    - mongodb-org-tools
 
 - name: copy mongod template for Xenial
   template:
